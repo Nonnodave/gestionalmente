@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block titolo%}Nuova Società{% endblock %}
+
+{% block body %}
+    <h1>Crea nuova Societa</h1>
+    {% if response %}
+        <p>{{ response }}</p>
+        <a href="{% url 'prodotti' %}">La tua società</a>
+    {% else%}
+        {% if user.is_authenticated %}
+            {% if user.societa is None %}
+            <p>Non hai ancora creato una società, creala ora</p>
+            
+            <h3>Inserisci i dati della tua società</h3>
+
+            <form action="" method="post">
+                {% csrf_token %}
+                <label for="input_nome">Nome:</label>
+                <input type="text" name="nome" id="input_nome" required maxlength="120" autocomplete="off">
+
+                <input type="submit" value="Crea la tua società">
+            </form>
+
+            {% else %}
+            <p>Hai già creato la tua società, gestiscila da <a href="{% url 'prodotti'%}">qui</a></p>
+            {% endif %}
+        {% else %}
+        <p>Devi effettuare il login per poter creare la tua società</p>
+        <a href="{% url 'login' %}">Effetualo ora</a>
+        <p>Non sei ancora registrato? <a href="{% url 'register' %}">Registrati ora</a></p>
+        {% endif %}
+    {% endif %}
+{% endblock %}
