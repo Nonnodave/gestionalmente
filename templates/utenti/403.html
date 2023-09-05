@@ -1,9 +1,0 @@
-{% extends "base.html" %}
-
-{% block titolo %}Accesso non autorizzato {% endblock%}
-
-{% block body %}
-    <p>Non hai permessi neccessari per accedere a questa risorsa, contatta l'amministratore della tua società</p>
-    <a href="{% url 'login' %}">Login</a>
-    <a href="{% url 'register' %}">Registrati</a>
-{% endblock%}
