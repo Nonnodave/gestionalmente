@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/nuovo-sottocampo.css' %}">
+{% endblock head%}
+
+{% block titolo %}Nuovo Sottocampo{% endblock titolo %}
+
+{% block body %}
+<form method="get" id="form-get">
+    <input type="button" value="pezzo" id="get-pezzo" class="btn btn-success" onclick="getInputChange(this)">
+    <input type="button" value="orario" id="get-orario" class="btn btn-light" onclick="getInputChange(this)">
+    <input type="hidden" value="pezzo" name="tipo" id="get-hidden">
+</form>
+
+<form method="post" id="form-dati">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Invia">
+</form>
+
+<script src="{% static 'js/nuovo-sottocampo.js' %}"></script>
+{% endblock body %}

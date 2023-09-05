@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+<!-- Head content -->
+{% block head %}
+<script>
+    $(document).ready(function (){
+        // let pass_1 = document.querySelector("#id_password");
+        // let pass_2 = document.querySelector("#id_password2");
+
+        // document.querySelector("form").addEventListener("submit", (event) => {
+        //     event.preventDefault();  // Annulla l'invio del form per i controlli
+
+        //     if (pass_1.value !== pass_2.value)
+        //     {
+        //         console.log("le password non corrispondono!")
+        //     } else {
+        //         event.currentTarget.querySelector("#id_password2").remove();
+        //         event.currentTarget.submit()
+        //     }
+        // });
+    });
+</script>
+{% endblock %}
+
+<!-- Title -->
+{% block titolo %}Registrati{% endblock %}
+
+<!-- Body content -->
+{% block body%}
+
+<a href="{% url 'home' %}">Home Page</a>
+
+{% if form.is_authenticated %}
+    <p>Sei già autenticato, effettua il logout <a href="{% url 'logout' %}">qui</a></p>
+
+{% else %}
+    <form method="post">
+    {% csrf_token %}
+    <!-- <table>
+    <tr>
+        <td>{{ form.email.label_tag }}</td>
+        <td>{{ form.email }}</td>
+    </tr>
+    <tr>
+        <td>{{ form.nome.label_tag }}</td>
+        <td>{{ form.nome }}</td>
+    </tr>
+    <tr>
+        <td>{{ form.cognome.label_tag }}</td>
+        <td>{{ form.cognome }}</td>
+    </tr>
+    <tr>
+        <td>{{ form.password.label_tag }}</td>
+        <td>{{ form.password }}</td>
+    </tr>
+    <tr>
+        <td><label for="id_password2">Conferma password:</label></td>
+        <td><input type="password" autocomplete="new-password" required id="id_password2"></td>
+    </tr>
+
+    </table> -->
+    {{ form.as_p }}
+    <input type="submit" value="Registrati">
+    <input type="hidden" name="next" value="{{ next }}">
+    </form>
+{% endif %}
+
+{% endblock %}
