@@ -18,7 +18,7 @@ urlpatterns = [
 
     path("accounts/login/", LoginUserView.as_view(), name="login"),
     path("accounts/logout/", LogoutView.as_view(), name="logout"),
-    path("accounts/register/", RegisterUserView.as_view(), name="register"),
+    path("accounts/register/", lambda request: redirect("home"), name="register"),
 
     path("api/prodotto/", CampoSottocampoApi.as_view(), name="api-prodotto"),
     path("api/societa/", ProdottiApi.as_view(), name="api-prodottti")
