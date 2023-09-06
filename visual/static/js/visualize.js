@@ -117,6 +117,8 @@ window.addEventListener("DOMContentLoaded", () => {
     // Funzione 'utility' per filtrare una lista dato un attributo
     function filter(list, nome_attr, valore_attr) {
         let result = [];
+        
+        if (list == undefined) return result;
 
         list.forEach(elem => {
             if (elem.getAttribute(nome_attr) == valore_attr)
@@ -312,7 +314,6 @@ window.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll(".campi-list").forEach(campo => {
             campo.classList.remove(cls_name_slt);
             campo.removeEventListener("click", () => {
-                    console.log("premuto campo");
                     // Aggiungo/tolgo la classe
                     campo.classList.toggle(cls_name_slt);
                 });
